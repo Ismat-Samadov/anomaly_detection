@@ -1,6 +1,0 @@
-body { font-family: Arial, sans-serif; margin: 12px; }
-header { margin-bottom: 12px; }
-#chartSection { margin-top: 18px; }
-#anomalyTable { width: 100%; border-collapse: collapse; margin-top: 12px; }
-#anomalyTable th, #anomalyTable td { border: 1px solid #ddd; padding: 6px; text-align: left; }
-#anomalyTable tr.anom { background: #ffd6d6; }
