@@ -29,7 +29,7 @@
     "year"
   ],
   "n_features": 13,
-  "best_model_name": "Local Outlier Factor",
+  "best_model_name": "One-Class SVM",
   "contamination_rate": 0.01,
   "random_seed": 42
 }

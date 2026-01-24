@@ -4,7 +4,7 @@ ANOMALY DETECTION PIPELINE - SUMMARY REPORT
 ================================================================================
 
 PROJECT: Natural Gas Pipeline Operations Monitoring
-DATE: 2026-01-24 22:40:00
+DATE: 2026-01-24 22:44:18
 
 ================================================================================
 DATA SUMMARY
@@ -28,7 +28,7 @@ Total Features           : 13
 MODEL TRAINING
 ================================================================================
 Models Evaluated         : 5
-Best Model               : Local Outlier Factor
+Best Model               : One-Class SVM
 Selection Criterion      : Lowest train-val rate consistency
 
 Train Set Size           : 119,202 (70.0%)
@@ -36,26 +36,26 @@ Validation Set Size      : 17,029 (10.0%)
 Test Set Size            : 34,058 (20.0%)
 
 ================================================================================
-BEST MODEL PERFORMANCE (Local Outlier Factor)
+BEST MODEL PERFORMANCE (One-Class SVM)
 ================================================================================
-Training Time            : 3.060s
+Training Time            : 34.418s
 Train Anomaly Rate       : 1.00%
-Val Anomaly Rate         : 1.00%
-Test Anomaly Rate        : 1.00%
-Rate Consistency         : 0.00%
+Val Anomaly Rate         : 1.02%
+Test Anomaly Rate        : 0.95%
+Rate Consistency         : 0.02%
 
 ================================================================================
 FINAL RESULTS (Full Dataset)
 ================================================================================
 Total Predictions        : 170,289
-Normal Observations      : 168,586 (99.00%)
-Anomalies Detected       : 1,703 (1.00%)
+Normal Observations      : 168,584 (99.00%)
+Anomalies Detected       : 1,705 (1.00%)
 
 Top Anomalous Location   : Sumqayit
-Location Anomaly Rate    : 1.22%
+Location Anomaly Rate    : 1.30%
 
 Peak Anomaly Hour        : 0:00
-Peak Hour Anomaly Rate   : 2.82%
+Peak Hour Anomaly Rate   : 4.16%
 
 ================================================================================
 OUTPUT FILES
@@ -78,7 +78,7 @@ OUTPUTS (CSV/JSON):
 
 ARTIFACTS (Model Files):
   ✓ /Users/ismatsamadov/crash_detection/artifacts/scaler.joblib
-  ✓ /Users/ismatsamadov/crash_detection/artifacts/best_model_local_outlier_factor.joblib
+  ✓ /Users/ismatsamadov/crash_detection/artifacts/best_model_one_class_svm.joblib
   ✓ /Users/ismatsamadov/crash_detection/artifacts/feature_config.json
   ✓ /Users/ismatsamadov/crash_detection/artifacts/production_pipeline.joblib
 
