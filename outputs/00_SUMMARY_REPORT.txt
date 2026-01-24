@@ -4,7 +4,7 @@ ANOMALY DETECTION PIPELINE - SUMMARY REPORT
 ================================================================================
 
 PROJECT: Natural Gas Pipeline Operations Monitoring
-DATE: 2026-01-24 22:50:57
+DATE: 2026-01-24 22:59:21
 
 ================================================================================
 DATA SUMMARY
@@ -38,7 +38,7 @@ Test Set Size            : 34,058 (20.0%)
 ================================================================================
 BEST MODEL PERFORMANCE (Local Outlier Factor)
 ================================================================================
-Training Time            : 2.955s
+Training Time            : 2.979s
 Train Anomaly Rate       : 1.00%
 Val Anomaly Rate         : 1.00%
 Test Anomaly Rate        : 1.00%
