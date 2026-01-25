@@ -482,19 +482,252 @@ canvas {
 }
 
 /* Responsive Design */
+
+/* Tablet (Portrait) and smaller */
+@media (max-width: 1024px) {
+    .dashboard {
+        padding: 1rem;
+    }
+
+    .station-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .monitoring-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pipeline-visualization {
+        padding: 1rem;
+        overflow-x: auto;
+    }
+
+    #pipeline-svg {
+        min-width: 800px;
+    }
+}
+
+/* Mobile (Landscape and Portrait) */
 @media (max-width: 768px) {
+    /* Header */
     .header {
         flex-direction: column;
         gap: 1rem;
+        padding: 1rem;
     }
 
+    .header-center {
+        order: -1;
+    }
+
+    .logo-text h1 {
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+    }
+
+    .logo-text p {
+        font-size: 0.7rem;
+    }
+
+    .logo-icon {
+        font-size: 2rem;
+    }
+
+    .system-time {
+        font-size: 1rem;
+    }
+
+    /* Dashboard */
+    .dashboard {
+        padding: 0.75rem;
+        gap: 1rem;
+    }
+
+    /* Grids to single column */
     .station-grid,
     .monitoring-grid,
     .stats-panel {
         grid-template-columns: 1fr;
     }
 
-    .logo-text h1 {
+    /* Station Cards */
+    .station-card {
+        padding: 1rem;
+    }
+
+    .station-header h3 {
+        font-size: 0.95rem;
+    }
+
+    .station-status {
+        font-size: 0.65rem;
+        padding: 0.25rem 0.6rem;
+    }
+
+    .metric-label {
+        font-size: 0.8rem;
+    }
+
+    .metric-value {
+        font-size: 1rem;
+    }
+
+    /* Pipeline Section */
+    .pipeline-section {
+        padding: 1rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .pipeline-visualization {
+        padding: 0.5rem;
+    }
+
+    /* Charts */
+    .chart-container,
+    .alert-panel {
+        padding: 1rem;
+    }
+
+    .chart-header h3 {
+        font-size: 0.9rem;
+    }
+
+    canvas {
+        max-height: 200px;
+    }
+
+    /* Stats */
+    .stat-box {
+        padding: 1rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+    }
+
+    .stat-value {
         font-size: 1.2rem;
+    }
+
+    /* Connection Status */
+    .status-message {
+        padding: 1.5rem 2rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* Small Mobile (< 480px) */
+@media (max-width: 480px) {
+    .header {
+        padding: 0.75rem;
+    }
+
+    .logo {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    .logo-text h1 {
+        font-size: 0.95rem;
+    }
+
+    .logo-text p {
+        font-size: 0.65rem;
+    }
+
+    .system-time {
+        font-size: 0.9rem;
+    }
+
+    .status-indicator {
+        font-size: 0.8rem;
+    }
+
+    .dashboard {
+        padding: 0.5rem;
+    }
+
+    .station-card,
+    .pipeline-section,
+    .chart-container,
+    .alert-panel,
+    .stat-box {
+        padding: 0.75rem;
+    }
+
+    .section-header h2 {
+        font-size: 1rem;
+    }
+
+    .station-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .metric {
+        padding: 0.4rem;
+    }
+
+    .alert-list {
+        max-height: 200px;
+    }
+
+    .status-message {
+        padding: 1rem;
+        font-size: 0.85rem;
+        flex-direction: column;
+    }
+
+    /* Hide less critical info on very small screens */
+    .logo-text p {
+        display: none;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Increase tap targets for touch */
+    .station-card,
+    .chart-container,
+    .alert-panel,
+    .stat-box {
+        min-height: 44px; /* iOS minimum recommended tap target */
+    }
+
+    /* Remove hover effects on touch devices */
+    .station-card:hover,
+    .stat-box:hover {
+        transform: none;
+    }
+
+    /* Larger touch-friendly buttons */
+    .station-status,
+    .metric {
+        min-height: 44px;
+    }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 896px) and (orientation: landscape) {
+    .header {
+        padding: 0.5rem 1rem;
+    }
+
+    .dashboard {
+        padding: 0.5rem;
+    }
+
+    .station-grid,
+    .monitoring-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    canvas {
+        max-height: 180px;
     }
 }
