@@ -63,6 +63,34 @@ body {
     text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
 }
 
+/* Weather Info */
+.weather-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 4px;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.weather-icon {
+    font-size: 1.5rem;
+}
+
+.weather-temp {
+    color: #00ff88;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+}
+
+.weather-desc {
+    color: #8899aa;
+    font-size: 0.85rem;
+}
+
 .status-indicator {
     display: flex;
     align-items: center;
