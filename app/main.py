@@ -15,8 +15,6 @@ from datetime import datetime
 import asyncio
 import json
 from pathlib import Path
-import httpx
-
 from .data_simulator import PipelineDataSimulator
 
 # Initialize FastAPI app
@@ -160,108 +158,6 @@ async def websocket_endpoint(websocket: WebSocket):
             await websocket.close()
         except RuntimeError:
             pass  # Already closed
-
-
-@app.get("/api/weather")
-async def get_weather():
-    """
-    Get current weather for Baku, Azerbaijan (near pipeline stations)
-    Uses Open-Meteo API (free, no API key needed)
-    """
-    try:
-        # Coordinates for Baku, Azerbaijan (near Mardakan, Sumqayit, Turkan)
-        latitude = 40.4093
-        longitude = 49.8671
-
-        # Open-Meteo API (free, no key required)
-        url = f"https://api.open-meteo.com/v1/forecast"
-        params = {
-            "latitude": latitude,
-            "longitude": longitude,
-            "current": "temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,wind_direction_10m",
-            "timezone": "Asia/Baku"
-        }
-
-        async with httpx.AsyncClient(timeout=5.0) as client:
-            response = await client.get(url, params=params)
-            response.raise_for_status()
-            data = response.json()
-
-            current = data.get("current", {})
-
-            # Weather code to description mapping
-            weather_codes = {
-                0: "Clear sky",
-                1: "Mainly clear",
-                2: "Partly cloudy",
-                3: "Overcast",
-                45: "Foggy",
-                48: "Foggy",
-                51: "Light drizzle",
-                53: "Drizzle",
-                55: "Heavy drizzle",
-                61: "Light rain",
-                63: "Rain",
-                65: "Heavy rain",
-                71: "Light snow",
-                73: "Snow",
-                75: "Heavy snow",
-                77: "Snow grains",
-                80: "Light showers",
-                81: "Showers",
-                82: "Heavy showers",
-                85: "Light snow showers",
-                86: "Snow showers",
-                95: "Thunderstorm",
-                96: "Thunderstorm with hail",
-                99: "Thunderstorm with heavy hail"
-            }
-
-            weather_code = current.get("weather_code", 0)
-            weather_desc = weather_codes.get(weather_code, "Unknown")
-
-            # Weather code to emoji
-            weather_emoji = {
-                0: "☀️", 1: "🌤️", 2: "⛅", 3: "☁️",
-                45: "🌫️", 48: "🌫️",
-                51: "🌦️", 53: "🌧️", 55: "🌧️",
-                61: "🌧️", 63: "🌧️", 65: "⛈️",
-                71: "🌨️", 73: "❄️", 75: "❄️", 77: "🌨️",
-                80: "🌦️", 81: "🌦️", 82: "⛈️",
-                85: "🌨️", 86: "🌨️",
-                95: "⛈️", 96: "⛈️", 99: "⛈️"
-            }
-
-            return {
-                "location": "Baku, Azerbaijan",
-                "temperature": round(current.get("temperature_2m", 0), 1),
-                "feels_like": round(current.get("apparent_temperature", 0), 1),
-                "humidity": current.get("relative_humidity_2m", 0),
-                "wind_speed": round(current.get("wind_speed_10m", 0), 1),
-                "wind_direction": current.get("wind_direction_10m", 0),
-                "precipitation": current.get("precipitation", 0),
-                "weather_code": weather_code,
-                "weather_description": weather_desc,
-                "weather_emoji": weather_emoji.get(weather_code, "🌡️"),
-                "timestamp": current.get("time", datetime.now().isoformat())
-            }
-
-    except Exception as e:
-        # Return fallback data if API fails
-        return {
-            "location": "Baku, Azerbaijan",
-            "temperature": 15,
-            "feels_like": 15,
-            "humidity": 60,
-            "wind_speed": 5,
-            "wind_direction": 180,
-            "precipitation": 0,
-            "weather_code": 1,
-            "weather_description": "Data unavailable",
-            "weather_emoji": "🌡️",
-            "timestamp": datetime.now().isoformat(),
-            "error": str(e)
-        }
 
 
 @app.get("/api/health")

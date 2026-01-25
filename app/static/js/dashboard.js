@@ -53,28 +53,6 @@ setInterval(updateSystemTime, 1000);
 updateSystemTime();
 
 // ============================================================
-// Weather Update
-// ============================================================
-
-async function updateWeather() {
-    try {
-        const response = await fetch('/api/weather');
-        const weather = await response.json();
-
-        document.getElementById('weather-icon').textContent = weather.weather_emoji;
-        document.getElementById('weather-temp').textContent = `${weather.temperature}°C`;
-        document.getElementById('weather-desc').textContent = weather.weather_description;
-    } catch (error) {
-        console.error('Weather update failed:', error);
-        // Keep showing loading state
-    }
-}
-
-// Update weather on load and every 10 minutes
-updateWeather();
-setInterval(updateWeather, 600000); // 10 minutes
-
-// ============================================================
 // Chart Initialization
 // ============================================================
 
