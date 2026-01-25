@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="48" fill="#1a2332" stroke="#00d4ff" stroke-width="3"/>
+
+  <!-- Pipeline horizontal -->
+  <rect x="15" y="42" width="70" height="16" fill="#2a3a4a" stroke="#00d4ff" stroke-width="2" rx="2"/>
+
+  <!-- Pipeline flow gradient -->
+  <defs>
+    <linearGradient id="flowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.3"/>
+      <stop offset="50%" style="stop-color:#00d4ff;stop-opacity:0.9"/>
+      <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:0.3"/>
+      <animate attributeName="x1" values="-100%;100%" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="x2" values="0%;200%" dur="2s" repeatCount="indefinite"/>
+    </linearGradient>
+  </defs>
+  <rect x="15" y="42" width="70" height="16" fill="url(#flowGradient)" opacity="0.6" rx="2"/>
+
+  <!-- Gauge/Monitor indicator -->
+  <circle cx="50" cy="50" r="15" fill="#0a0e1a" stroke="#00ff88" stroke-width="2.5"/>
+
+  <!-- Gauge needle -->
+  <line x1="50" y1="50" x2="50" y2="38" stroke="#00ff88" stroke-width="2" stroke-linecap="round">
+    <animateTransform
+      attributeName="transform"
+      type="rotate"
+      from="0 50 50"
+      to="360 50 50"
+      dur="4s"
+      repeatCount="indefinite"/>
+  </line>
+
+  <!-- Center dot -->
+  <circle cx="50" cy="50" r="3" fill="#00ff88"/>
+
+  <!-- Alert/monitoring dots -->
+  <circle cx="30" cy="25" r="3" fill="#00ff88" opacity="0.8">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="70" cy="25" r="3" fill="#00d4ff" opacity="0.8">
+    <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+  </circle>
+</svg>
