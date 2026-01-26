@@ -8,6 +8,7 @@ from fastapi import FastAPI, WebSocket, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
+from starlette.websockets import WebSocketDisconnect
 import joblib
 import pandas as pd
 import numpy as np
@@ -161,7 +162,11 @@ async def websocket_endpoint(websocket: WebSocket):
             # Wait before next update (2 seconds)
             await asyncio.sleep(2)
 
+    except WebSocketDisconnect:
+        # Normal client disconnection - not an error
+        print(f"✓ WebSocket client disconnected normally: {client_host}")
     except Exception as e:
+        # Unexpected errors
         print(f"⚠ WebSocket error for {client_host}: {type(e).__name__}: {e}")
         print(f"Traceback: {traceback.format_exc()}")
     finally:
