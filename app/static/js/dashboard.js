@@ -103,17 +103,17 @@ function initCharts() {
             labels: [],
             datasets: [
                 {
-                    label: 'Mardakan',
-                    data: [],
-                    borderColor: '#00ff88',
-                    backgroundColor: 'rgba(0, 255, 136, 0.1)',
-                    tension: 0.4
-                },
-                {
                     label: 'Sumqayit',
                     data: [],
                     borderColor: '#ffa500',
                     backgroundColor: 'rgba(255, 165, 0, 0.1)',
+                    tension: 0.4
+                },
+                {
+                    label: 'Mardakan',
+                    data: [],
+                    borderColor: '#00ff88',
+                    backgroundColor: 'rgba(0, 255, 136, 0.1)',
                     tension: 0.4
                 },
                 {
@@ -135,17 +135,17 @@ function initCharts() {
             labels: [],
             datasets: [
                 {
-                    label: 'Mardakan',
-                    data: [],
-                    borderColor: '#00ff88',
-                    backgroundColor: 'rgba(0, 255, 136, 0.1)',
-                    tension: 0.4
-                },
-                {
                     label: 'Sumqayit',
                     data: [],
                     borderColor: '#ffa500',
                     backgroundColor: 'rgba(255, 165, 0, 0.1)',
+                    tension: 0.4
+                },
+                {
+                    label: 'Mardakan',
+                    data: [],
+                    borderColor: '#00ff88',
+                    backgroundColor: 'rgba(0, 255, 136, 0.1)',
                     tension: 0.4
                 },
                 {
@@ -289,15 +289,15 @@ function updateCharts(location, timeLabel, sensors) {
 function updateChartData() {
     // Update Pressure Chart
     state.charts.pressure.data.labels = state.chartData.labels;
-    state.charts.pressure.data.datasets[0].data = state.chartData.pressure.mardakan;
-    state.charts.pressure.data.datasets[1].data = state.chartData.pressure.sumqayit;
+    state.charts.pressure.data.datasets[0].data = state.chartData.pressure.sumqayit;
+    state.charts.pressure.data.datasets[1].data = state.chartData.pressure.mardakan;
     state.charts.pressure.data.datasets[2].data = state.chartData.pressure.turkan;
     state.charts.pressure.update('none');
 
     // Update Flow Chart
     state.charts.flow.data.labels = state.chartData.labels;
-    state.charts.flow.data.datasets[0].data = state.chartData.flow.mardakan;
-    state.charts.flow.data.datasets[1].data = state.chartData.flow.sumqayit;
+    state.charts.flow.data.datasets[0].data = state.chartData.flow.sumqayit;
+    state.charts.flow.data.datasets[1].data = state.chartData.flow.mardakan;
     state.charts.flow.data.datasets[2].data = state.chartData.flow.turkan;
     state.charts.flow.update('none');
 }
