@@ -14,6 +14,7 @@ import numpy as np
 from datetime import datetime
 import asyncio
 import json
+import traceback
 from pathlib import Path
 from .data_simulator import PipelineDataSimulator
 
@@ -90,12 +91,19 @@ async def websocket_endpoint(websocket: WebSocket):
     WebSocket endpoint for real-time data streaming
     Sends pipeline data every 2 seconds with anomaly detection
     """
+    client_host = websocket.client.host if websocket.client else "unknown"
+    print(f"✓ WebSocket client connected: {client_host}")
     await websocket.accept()
 
     try:
         while True:
             # Generate simulated data point
-            data_point = simulator.generate_data_point()
+            try:
+                data_point = simulator.generate_data_point()
+            except Exception as e:
+                print(f"⚠ Data generation error: {type(e).__name__}: {e}")
+                await asyncio.sleep(2)
+                continue
 
             # Prepare data for prediction
             if MODEL_LOADED:
@@ -124,7 +132,8 @@ async def websocket_endpoint(websocket: WebSocket):
                     is_anomaly = (prediction == -1)
 
                 except Exception as e:
-                    print(f"Prediction error: {e}")
+                    print(f"⚠ Prediction error: {type(e).__name__}: {e}")
+                    print(f"Traceback: {traceback.format_exc()}")
                     is_anomaly = False
             else:
                 # Simulate anomaly detection (1% random)
@@ -153,13 +162,15 @@ async def websocket_endpoint(websocket: WebSocket):
             await asyncio.sleep(2)
 
     except Exception as e:
-        print(f"WebSocket error: {e}")
+        print(f"⚠ WebSocket error for {client_host}: {type(e).__name__}: {e}")
+        print(f"Traceback: {traceback.format_exc()}")
     finally:
         # Only close if not already closed
         try:
             await websocket.close()
+            print(f"✓ WebSocket connection closed: {client_host}")
         except RuntimeError:
-            pass  # Already closed
+            print(f"✓ WebSocket already closed: {client_host}")
 
 
 @app.get("/api/health")
